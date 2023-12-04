@@ -10,7 +10,7 @@ export function Layout({
   children: ReactNode;
 }) {
   return (
-    <html data-theme="kuryart-dark" className="h-full">
+    <html data-theme="kuryart-dark" className="h-full" lang="en">
       <head>
         <title>{title}</title>
         <meta
@@ -21,24 +21,13 @@ export function Layout({
         <meta charSet="utf-8" />
         <link rel="stylesheet" href="/style.css" />
         <script src="/htmx.js" defer></script>
+        <script src="/hyperscript.js" defer></script>
       </head>
       <body className="h-full">
         <main className="max-w-screen-md mx-auto flex flex-col gap-8">
-          <div className="w-full max-w-screen-md mx-auto">
+          <header>
             <Header />
-            <header className="w-full flex items-center p-8" hx-boost="true">
-              <h1>
-                <a href="/" className="btn btn-secondary btn-outline">
-                  Hello Bun!
-                </a>
-              </h1>
-              <nav className="ml-auto">
-                <a href="/about" className="btn btn-ghost">
-                  About
-                </a>
-              </nav>
-            </header>
-          </div>
+          </header>
           <section>{children}</section>
           <footer className="text-center mt-auto p-12 text-sm text-base-content/60">
             <p>
