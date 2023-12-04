@@ -2,7 +2,7 @@
 .env
 
 # build artifacts
-public/tailwind.css
+public/style.css
 build/
 
 # dependencies
