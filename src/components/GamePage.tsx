@@ -1,8 +1,8 @@
 import { Hero } from "./Hero";
 import { Layout } from "./Layout";
 
-export function AboutPage() {
-  const title = "About";
+export function GamePage() {
+  const title = "Game";
   return (
     <Layout title={title}>
       <Hero title={title}>

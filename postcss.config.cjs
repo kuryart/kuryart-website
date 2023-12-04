@@ -6,7 +6,7 @@ module.exports = {
     "tailwindcss": {},
     "autoprefixer": {},
     "@fullhuman/postcss-purgecss": {
-      content: ["./**/*.tsx"],
+      content: ["src/**/*.tsx"],
     },
     "cssnano": {
       preset: "default",

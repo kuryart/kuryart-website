@@ -1,4 +1,4 @@
-import { AboutPage } from "./components/AboutPage";
+import { MusicPage } from "./components/MusicPage";
 import { CurrentTime } from "./components/CurrentTime";
 import { HomePage } from "./components/HomePage";
 import { html, serve_static } from "./response";
@@ -20,7 +20,7 @@ export function start() {
 
       // Handle routes
       if (url.pathname === "/") return html(<HomePage />);
-      if (url.pathname === "/about") return html(<AboutPage />);
+      if (url.pathname === "/about") return html(<MusicPage />);
       if (url.pathname === "/time") return html(<CurrentTime />);
 
       // Fallback to serving static files

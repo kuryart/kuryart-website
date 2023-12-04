@@ -1,0 +1,11 @@
+.icon--custom-icons {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.icon--custom-icons--kuryart {
+  background-image: url("./kuryart-icon-black.svg");
+}

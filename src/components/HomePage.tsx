@@ -3,7 +3,7 @@ import { Layout } from "./Layout";
 import { Loading } from "./Loading";
 
 export function HomePage() {
-  const title = "Hello Bun!";
+  const title = "KuryArt";
   return (
     <Layout title={title}>
       <div className="flex flex-col gap-8">

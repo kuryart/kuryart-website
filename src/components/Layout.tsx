@@ -1,4 +1,6 @@
 import { ReactNode } from "react";
+import { Header } from "./Header";
+import { BottomNav } from "./BottomNav";
 
 export function Layout({
   title,
@@ -8,12 +10,12 @@ export function Layout({
   children: ReactNode;
 }) {
   return (
-    <html className="h-full">
+    <html data-theme="kuryart-dark" className="h-full">
       <head>
         <title>{title}</title>
         <meta
           name="description"
-          content="A demo app using Bun + HTMX + TailwindCSS + DaisyUI, deployed on Fly.io"
+          content="KuryArt"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
@@ -23,6 +25,7 @@ export function Layout({
       <body className="h-full">
         <main className="max-w-screen-md mx-auto flex flex-col gap-8">
           <div className="w-full max-w-screen-md mx-auto">
+            <Header />
             <header className="w-full flex items-center p-8" hx-boost="true">
               <h1>
                 <a href="/" className="btn btn-secondary btn-outline">
