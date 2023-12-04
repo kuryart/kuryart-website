@@ -8,7 +8,7 @@ export function HomePage() {
     <Layout title={title}>
       <div className="flex flex-col gap-8">
         <Hero title={title}>
-          <p className="text-lg">
+          <p className="text-md">
             This is an example of a Bun and it's built in HTTP server app using
             TailwindCSS and DaisyUI.
           </p>
@@ -26,8 +26,7 @@ export function HomePage() {
             </a>
           </nav>
         </Hero>
-
-        <section className="max-w-md mx-auto flex flex-col gap-4 p-8">
+        <section className="max-w-screen-md mx-auto flex flex-col gap-4 p-8">
           <h2 className="uppercase text-xl">
             <strong>HTMX</strong>
           </h2>
@@ -48,15 +47,6 @@ export function HomePage() {
             </em>
           </p>
         </section>
-        {/* The delay is to show the loading indicator, otherwise it would probably render to fast to notice */}
-        <div
-          hx-trigger="load delay:2s"
-          hx-get="/time"
-          hx-swap="innerHTML"
-          className="flex items-center justify-center h-64"
-        >
-          <Loading />
-        </div>
       </div>
     </Layout>
   );

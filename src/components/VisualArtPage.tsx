@@ -2,7 +2,7 @@ import { Hero } from "./Hero";
 import { Layout } from "./Layout";
 
 export function VisualArtPage() {
-  const title = "Visual Art";
+  const title = "KuryArt | Visual Art";
   return (
     <Layout title={title}>
       <Hero title={title}>
