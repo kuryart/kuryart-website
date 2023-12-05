@@ -3,46 +3,49 @@ import { HomePage } from "./components/HomePage";
 import { MusicPage } from "./components/MusicPage";
 import { GamePage } from "./components/GamePage";
 import { VisualArtPage } from "./components/VisualArtPage";
-
-// import { t, getLanguage } from "./localization";
-import { isLanguageValid, setLocalization } from "./localization";
+import { setupLocalization, changeLanguage, defaultLanguage } from "./localization";
 
 // Configuration
 const port = process.env?.PORT ? Number(process.env.PORT) : 3000;
 const development = process.env?.NODE_ENV === "development";
-const hostname = development ? "localhost" : process.env?.HOSTNAME ?? "localhost";
+const hostname = development
+  ? "localhost"
+  : process.env?.HOSTNAME ?? "localhost";
 
 export function start() {
+  setupLocalization();
+
   const server = Bun.serve({
     port,
     hostname,
     development,
-    fetch(req) {
+    async fetch(req) {
       console.log(`[request]: ${req.method}: ${req.url}`);
 
-      const url = new URL(req.url);
+      let url = new URL(req.url);
+
       // - Handle routes
       // -- Main routes
       if (url.pathname === "/") return html(<HomePage />);
       if (url.pathname === "/music") return html(<MusicPage />);
       if (url.pathname === "/game") return html(<GamePage />);
       if (url.pathname === "/visual-art") return html(<VisualArtPage />);
-
       // -- Localization
-      const paths = url.pathname.split(/[\/]+/);
+      if (url.pathname === "/change-lang") {
+        const response = html(<></>, 204);
+        response.headers.append("HX-Refresh", "true");
 
-      if (isLanguageValid(paths[1])) {
-        const lang = paths[1];
-        const path = "/" + paths.slice(2).join("/");
+        if(!req.body) {
+          changeLanguage(defaultLanguage);
+          return response;
+        }
 
-        setLocalization(lang, path);
-
-        if (path === "/") return html(<HomePage />);
-        if (path === "/music") return html(<MusicPage />);
-        if (path === "/game") return html(<GamePage />);
-        if (path === "/visual-art") return html(<VisualArtPage />);
-
-        // console.log(`[localization]: ${lang} ${path}`);
+        if(req.body) {          
+          let lang = await Bun.readableStreamToText(req.body);
+          lang = lang.replace("lang=", "");
+          changeLanguage(lang);
+          return response;
+        }
       }
 
       // Fallback to serving static files

@@ -1,12 +1,3 @@
-import { ReactNode } from "react";
-
-// export function Header({
-//   title,
-//   children,
-// }: {
-//   title: string;
-//   children: ReactNode;
-// }) {
 export function Header() {
   return (
     <div className="navbar bg-base-100">
@@ -54,6 +45,44 @@ export function Header() {
           </li>
           <li>
             <a href="/visual-art">Arte Visual</a>
+          </li>
+        </ul>
+      </div>
+
+      <div className="dropdown dropdown-bottom dropdown-end">
+        <div tabIndex={0} role="button" className="m-1">
+          Lang
+        </div>
+        <ul
+          tabIndex={0}
+          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+        >
+          <li
+            hx-post="/change-lang"
+            hx-swap="none"
+            hx-include="find input[name='lang']"
+            hx-trigger="click"
+          >
+            <a>EN</a>
+            <input type="hidden" name="lang" value="en" />
+          </li>
+          <li
+            hx-post="/change-lang"
+            hx-swap="none"
+            hx-include="find input[name='lang']"
+            hx-trigger="click"
+          >
+            <a>ES</a>
+            <input type="hidden" name="lang" value="es" />
+          </li>
+          <li
+            hx-post="/change-lang"
+            hx-swap="none"
+            hx-include="find input[name='lang']"
+            hx-trigger="click"
+          >
+            <a>PT-BR</a>
+            <input type="hidden" name="lang" value="pt_br" />
           </li>
         </ul>
       </div>

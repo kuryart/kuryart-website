@@ -1,12 +1,14 @@
 import { Hero } from "./Hero";
 import { Layout } from "./Layout";
+import { useTranslation } from "react-i18next";
 
 export function MusicPage() {
-  const title = localization.title;
+  const { t } = useTranslation();
+
   return (
-    <Layout title={title}>
-      <Hero title={title}>
-        <p>{localization.text}</p>
+    <Layout title={t("music.title")}>
+      <Hero title={t("music.title")}>
+        {t("music.text")}
       </Hero>
     </Layout>
   );

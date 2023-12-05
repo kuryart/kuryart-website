@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { Header } from "./Header";
-import { BottomNav } from "./BottomNav";
+import { useTranslation } from "react-i18next";
 
 export function Layout({
   title,
@@ -9,14 +9,13 @@ export function Layout({
   title: string;
   children: ReactNode;
 }) {
+  const { t } = useTranslation();
+
   return (
-    <html data-theme="kuryart-dark" className="h-full" lang="en">
+    <html data-theme="kuryart-dark" className="h-full">
       <head>
         <title>{title}</title>
-        <meta
-          name="description"
-          content="KuryArt"
-        />
+        <meta name="description" content="KuryArt" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta charSet="utf-8" />
         <link rel="stylesheet" href="/style.css" />

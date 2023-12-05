@@ -1,33 +1,78 @@
-import translations from "./lang";
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 
-type Localization = {
-    [key:string]: string,
+export const defaultLanguage = "en";
+
+export function setupLocalization() {
+  i18n.use(initReactI18next).init({
+    lng: "en",
+    // debug: true,
+    fallbackLng: "en",
+    resources: {
+      en: {
+        translation: {
+          home: {
+            title: "Kuryart",
+            text: "Made with ❤️ by Kuryart | HomePage",
+          },
+          music: {
+            title: "Music",
+            text: "Made with ❤️ by Kuryart | MusicPage",
+          },
+          game: {
+            title: "Game",
+            text: "Made with ❤️ by Kuryart | GamePage",
+          },
+          visual: {
+            title: "Visual Art",
+            text: "Made with ❤️ by Kuryart | VisualArtPage",
+          },
+        },
+      },
+      es: {
+        translation: {
+          home: {
+            title: "Kuryart",
+            text: "Hecho con ❤️ por Kuryart | HomePage",
+          },
+          music: {
+            title: "Música",
+            text: "Hecho con ❤️ por Kuryart | MusicPage",
+          },
+          game: {
+            title: "Game",
+            text: "Hecho con ❤️ por Kuryart | GamePage",
+          },
+          visual: {
+            title: "Artes Visuales",
+            text: "Hecho con ❤️ por Kuryart | VisualArtPage",
+          },
+        },
+      },
+      pt_br: {
+        translation: {
+          home: {
+            title: "Kuryart",
+            text: "Feito com ❤️ por Kuryart | HomePage",
+          },
+          music: {
+            title: "Música",
+            text: "Feito com ❤️ por Kuryart | MusicPage",
+          },
+          game: {
+            title: "Game",
+            text: "Feito com ❤️ por Kuryart | GamePage",
+          },
+          visual: {
+            title: "Artes Visuais",
+            text: "Feito com ❤️ por Kuryart | VisualArtPage",
+          },          
+        },
+      },
+    },
+  });
 }
 
-declare global {
-    var localization: Localization;
-    var language: Language;
-}
-
-enum Language {
-  BrazilianPortuguese = "pt-br",
-  English = "en",
-  Spanish = "es",
-}
-
-function getTranslation(lang: Language, page: string) {
-  if (!isLanguageValid(lang)) {
-    return translations["en"].pages[page.slice(1)]
-  }
-
-  return translations[lang].pages[page.slice(1)];
-}
-
-export function setLocalization(lang: Language, page:string) {
-    globalThis.localization = getTranslation(lang, page);
-    globalThis.language = lang;
-}
-
-export function isLanguageValid(value: string): value is Language {
-  return Object.values(Language).includes(value as Language);
+export function changeLanguage(lang: string) {
+  i18n.changeLanguage(lang);
 }
