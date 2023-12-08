@@ -1,11 +1,13 @@
 {
   "recommendations": [
-    "moalamri.inline-fold",
-    "otovo-oss.htmx-tags",
-    "esbenp.prettier-vscode",
-    "bradlc.vscode-tailwindcss",
-    "ricard.postcss",
+    "dbaeumer.vscode-eslint",
     "mikestead.dotenv",
-    "ms-azuretools.vscode-docker"
+    "ricard.postcss",
+    "esbenp.prettier-vscode",
+    "oven.bun-vscode",
+    "naumovs.color-highlight",
+    "wix.glean",
+    "otovo-oss.htmx-tags",
+    "bradlc.vscode-tailwindcss"
   ]
 }

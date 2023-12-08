@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
-import { NotFoundPage } from "./components/NotFoundPage";
+import { NotFoundPage } from "../components/NotFoundPage";
 import { renderToString } from "react-dom/server";
 import { I18nextProvider } from "react-i18next";
-import i18n from "./i18n";
-import TranslationWrapper from "./components/TranslationWrapper";
+import i18n from "../locale/i18n";
+import TranslationWrapper from "../components/TranslationWrapper";
 
 declare module I18nextProvider {
   export interface I18nextProviderProps {

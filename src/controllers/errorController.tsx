@@ -1,5 +1,5 @@
 import { NotFoundPage } from "../components/NotFoundPage";
-import { html } from "../response";
+import { html } from "../http/response";
 
 export function notFound(request: Request): Response {
   console.log(`[404]: ${request.method}: ${request.url}`);

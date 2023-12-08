@@ -1,6 +1,6 @@
 import { Hero } from "./Hero";
 import { Layout } from "./Layout";
-import { t } from "../localization";
+import { t } from "../locale/localization";
 
 export function GamePage() {
   return (

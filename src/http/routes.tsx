@@ -1,15 +1,15 @@
 import Elysia from "elysia";
-import { changeLang } from "./controllers/languageController";
-import { homePage } from "./controllers/homeController";
-import { musicPage } from "./controllers/musicController";
-import { gamePage } from "./controllers/gameController";
-import { visualArtPage } from "./controllers/visualArtController";
+import { changeLang } from "../controllers/languageController";
+import { homePage } from "../controllers/homeController";
+import { musicPage } from "../controllers/musicController";
+import { gamePage } from "../controllers/gameController";
+import { visualArtPage } from "../controllers/visualArtController";
 import {
   badRequest,
   forbidden,
   internalServerError,
   notFound,
-} from "./controllers/errorController";
+} from "../controllers/errorController";
 
 export const routes = (app: Elysia) =>
   app

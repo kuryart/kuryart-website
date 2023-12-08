@@ -15,23 +15,23 @@ i18n.use(initReactI18next).init({
             "Developer, Musician, Game Designer, Writer and Visual Artist.",
         },
         home: {
-          title: "Kuryart",
-          text: "Made with ❤️ by Kuryart | HomePage",
+          title: "KuryArt",
+          text: "Made with ❤️ by KuryArt | HomePage",
         },
         dev: {
           title: "Dev",
         },
         music: {
           title: "Music",
-          text: "Made with ❤️ by Kuryart | MusicPage",
+          text: "Made with ❤️ by KuryArt | MusicPage",
         },
         game: {
           title: "Game",
-          text: "Made with ❤️ by Kuryart | GamePage",
+          text: "Made with ❤️ by KuryArt | GamePage",
         },
         visual: {
           title: "Visual Art",
-          text: "Made with ❤️ by Kuryart | VisualArtPage",
+          text: "Made with ❤️ by KuryArt | VisualArtPage",
         },
       },
     },
@@ -42,23 +42,23 @@ i18n.use(initReactI18next).init({
             "Desarrollador, Músico, Diseñador de Juegos, Escritor y Artista Visual.",
         },
         home: {
-          title: "Kuryart",
-          text: "Hecho con ❤️ por Kuryart | HomePage",
+          title: "KuryArt",
+          text: "Hecho con ❤️ por KuryArt | HomePage",
         },
         dev: {
           title: "Dev",
         },        
         music: {
           title: "Música",
-          text: "Hecho con ❤️ por Kuryart | MusicPage",
+          text: "Hecho con ❤️ por KuryArt | MusicPage",
         },
         game: {
           title: "Game",
-          text: "Hecho con ❤️ por Kuryart | GamePage",
+          text: "Hecho con ❤️ por KuryArt | GamePage",
         },
         visual: {
           title: "Artes Visuales",
-          text: "Hecho con ❤️ por Kuryart | VisualArtPage",
+          text: "Hecho con ❤️ por KuryArt | VisualArtPage",
         },
       },
     },
@@ -69,23 +69,23 @@ i18n.use(initReactI18next).init({
             "Desenvolvedor, Músico, Designer de Jogos, Escritor e Artista Visual.",
         },
         home: {
-          title: "Kuryart",
-          text: "Feito com ❤️ por Kuryart | HomePage",
+          title: "KuryArt",
+          text: "Feito com ❤️ por KuryArt | HomePage",
         },
         dev: {
           title: "Dev",
         },        
         music: {
           title: "Música",
-          text: "Feito com ❤️ por Kuryart | MusicPage",
+          text: "Feito com ❤️ por KuryArt | MusicPage",
         },
         game: {
           title: "Game",
-          text: "Feito com ❤️ por Kuryart | GamePage",
+          text: "Feito com ❤️ por KuryArt | GamePage",
         },
         visual: {
           title: "Artes Visuais",
-          text: "Feito com ❤️ por Kuryart | VisualArtPage",
+          text: "Feito com ❤️ por KuryArt | VisualArtPage",
         },
       },
     },

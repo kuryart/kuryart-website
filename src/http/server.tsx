@@ -2,7 +2,7 @@ import { Elysia } from "elysia";
 import { staticPlugin } from "@elysiajs/static";
 import { htmx } from "elysia-htmx";
 import { routes } from "./routes";
-import { setupLocalization } from "./localization";
+import { setupLocalization } from "../locale/localization";
 
 export function start() {
   setupLocalization();

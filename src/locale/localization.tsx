@@ -1,5 +1,5 @@
 import i18n from "./i18n";
-import TranslationContext from "./components/TranslationContext";
+import TranslationContext from "../components/TranslationContext";
 import { useContext } from "react";
 
 enum LANGUAGES {

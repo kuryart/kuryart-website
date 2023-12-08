@@ -1,4 +1,4 @@
-import { getCurrentLanguage, t } from "../localization";
+import { getCurrentLanguage, t } from "../locale/localization";
 
 export function Header() {
   return (
@@ -6,7 +6,7 @@ export function Header() {
       <div className="flex-1 items-center">
         <a
           href={"/" + getCurrentLanguage()}
-          className="text-3xl icon--custom-icons icon--custom-icons--kuryart "
+          className="text-3xl icon--custom-icons icon--custom-icons--kuryart"
         />
         <a
           href={"/" + getCurrentLanguage()}
@@ -15,7 +15,7 @@ export function Header() {
           KuryArt
         </a>
       </div>
-      
+
       <div className="flex-none hidden md:block">
         <ul className="menu menu-horizontal px-1">
           <li>
@@ -57,14 +57,14 @@ export function Header() {
 
       <div className="flex-col md:hidden relative">
         <button
-          _="on click toggle .hidden on #mobile-menu-items"
-          className="btn btn-square btn-ghost"
+          _="install Menu"
+          className="btn btn-square btn-ghost document"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
-            className="inline-block w-5 h-5 stroke-current"
+            className="inline-block w-5 h-5 stroke-current pointer-events-none"
           >
             <path
               strokeLinecap="round"
@@ -75,7 +75,6 @@ export function Header() {
           </svg>
         </button>
         <ul
-          id="mobile-menu-items"
           className="hidden menu bg-base-200 rounded-box overflow-hidden absolute top-full right-0 z-10"
         >
           <li>
@@ -115,13 +114,16 @@ export function Header() {
         </ul>
       </div>
 
-      <div className="dropdown dropdown-bottom dropdown-end">
-        <div tabIndex={0} role="button" className="m-1">
+      <div className="flex-col relative">
+        <button
+          _="install Menu"
+          className="btn btn-square btn-ghost document"
+        >
           🌐
-        </div>
+        </button>
         <ul
-          tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-36 font-bold"
+          id="lang-menu-items"
+          className="hidden menu bg-base-200 rounded-box overflow-hidden absolute top-full right-0 z-10"
         >
           <li
             hx-post="/change-lang"
@@ -129,7 +131,9 @@ export function Header() {
             hx-include="find input[name='lang']"
             hx-trigger="click"
           >
-            <a>🇺🇸 <span className="ml-2">EN</span></a>
+            <a>
+              🇺🇸 <span className="ml-2">EN</span>
+            </a>
             <input type="hidden" name="lang" value="en" />
           </li>
           <li
@@ -138,7 +142,9 @@ export function Header() {
             hx-include="find input[name='lang']"
             hx-trigger="click"
           >
-            <a>🇪🇸 <span className="ml-2">ES</span></a>
+            <a>
+              🇪🇸 <span className="ml-2">ES</span>
+            </a>
             <input type="hidden" name="lang" value="es" />
           </li>
           <li
@@ -147,12 +153,13 @@ export function Header() {
             hx-include="find input[name='lang']"
             hx-trigger="click"
           >
-            <a>🇧🇷 <span className="ml-2">PT-BR</span></a>
+            <a>
+              🇧🇷 <span className="ml-2">PT-BR</span>
+            </a>
             <input type="hidden" name="lang" value="pt_br" />
           </li>
         </ul>
       </div>
-
     </div>
   );
 }

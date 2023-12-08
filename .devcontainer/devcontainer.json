@@ -17,7 +17,16 @@
 		"vscode": {
 			// Add the IDs of extensions you want installed when the container is created.
 			"extensions": [
-				"dbaeumer.vscode-eslint"
+				"dbaeumer.vscode-eslint",
+				"mikestead.dotenv",
+				"ricard.postcss",
+				"esbenp.prettier-vscode",
+				"oven.bun-vscode",
+				"naumovs.color-highlight",
+				"wix.glean",
+				"otovo-oss.htmx-tags",
+				"bradlc.vscode-tailwindcss",
+				"dz4k.vscode-hyperscript-org"
 			]
 		}
 	},
