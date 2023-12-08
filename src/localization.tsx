@@ -1,78 +1,36 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import i18n from "./i18n";
+import TranslationContext from "./components/TranslationContext";
+import { useContext } from "react";
 
-export const defaultLanguage = "en";
-
-export function setupLocalization() {
-  i18n.use(initReactI18next).init({
-    lng: "en",
-    // debug: true,
-    fallbackLng: "en",
-    resources: {
-      en: {
-        translation: {
-          home: {
-            title: "Kuryart",
-            text: "Made with ❤️ by Kuryart | HomePage",
-          },
-          music: {
-            title: "Music",
-            text: "Made with ❤️ by Kuryart | MusicPage",
-          },
-          game: {
-            title: "Game",
-            text: "Made with ❤️ by Kuryart | GamePage",
-          },
-          visual: {
-            title: "Visual Art",
-            text: "Made with ❤️ by Kuryart | VisualArtPage",
-          },
-        },
-      },
-      es: {
-        translation: {
-          home: {
-            title: "Kuryart",
-            text: "Hecho con ❤️ por Kuryart | HomePage",
-          },
-          music: {
-            title: "Música",
-            text: "Hecho con ❤️ por Kuryart | MusicPage",
-          },
-          game: {
-            title: "Game",
-            text: "Hecho con ❤️ por Kuryart | GamePage",
-          },
-          visual: {
-            title: "Artes Visuales",
-            text: "Hecho con ❤️ por Kuryart | VisualArtPage",
-          },
-        },
-      },
-      pt_br: {
-        translation: {
-          home: {
-            title: "Kuryart",
-            text: "Feito com ❤️ por Kuryart | HomePage",
-          },
-          music: {
-            title: "Música",
-            text: "Feito com ❤️ por Kuryart | MusicPage",
-          },
-          game: {
-            title: "Game",
-            text: "Feito com ❤️ por Kuryart | GamePage",
-          },
-          visual: {
-            title: "Artes Visuais",
-            text: "Feito com ❤️ por Kuryart | VisualArtPage",
-          },          
-        },
-      },
-    },
-  });
+enum LANGUAGES {
+  EN = "en",
+  ES = "es",
+  PT_BR = "pt_br",
 }
 
-export function changeLanguage(lang: string) {
-  i18n.changeLanguage(lang);
+const defaultLanguage = LANGUAGES.EN;
+
+function isLanguageValid(language: string): language is LANGUAGES {
+  return Object.values(LANGUAGES).includes(language as LANGUAGES);
+}
+
+function getLanguage(language: string): LANGUAGES {
+  return isLanguageValid(language)
+    ? language
+    : defaultLanguage;
+}
+
+export function t(key: string) {
+  const language = getCurrentLanguage();
+  const translatedText = i18n.t(key, { lng: language });
+
+  return translatedText;
+}
+
+export function getCurrentLanguage() {
+  return getLanguage(useContext(TranslationContext));
+}
+
+export function setupLocalization(language: string = defaultLanguage) {
+  i18n;
 }

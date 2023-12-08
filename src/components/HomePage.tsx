@@ -1,21 +1,12 @@
 import { Hero } from "./Hero";
 import { Layout } from "./Layout";
-import { useTranslation } from "react-i18next";
-
-function changeLanguage (lang: string) {
-  const { i18n } = useTranslation();  
-  i18n.changeLanguage(lang);
-};
+import { t } from "../localization";
 
 export function HomePage() {
-  const title = "KuryArt";
-  const { t } = useTranslation();
-  
   return (
-    // <Layout title={t("home.title")}>
-    <Layout title={title}>
+    <Layout title={t("home.title")}>
       <div className="flex flex-col gap-8">
-        <Hero title={title}>
+        <Hero title={t("home.title")}>
           <p className="text-md">{t("home.text")}</p>
           <nav className="flex flex-col items-center gap-6 mx-auto">
             <a

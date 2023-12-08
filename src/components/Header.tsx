@@ -1,15 +1,21 @@
+import { getCurrentLanguage, t } from "../localization";
+
 export function Header() {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1 items-center">
         <a
-          href="/"
+          href={"/" + getCurrentLanguage()}
           className="text-3xl icon--custom-icons icon--custom-icons--kuryart "
         />
-        <a href="/" className="btn btn-ghost normal-case text-xl">
+        <a
+          href={"/" + getCurrentLanguage()}
+          className="btn btn-ghost normal-case text-xl"
+        >
           KuryArt
         </a>
       </div>
+      
       <div className="flex-none hidden md:block">
         <ul className="menu menu-horizontal px-1">
           <li>
@@ -18,7 +24,7 @@ export function Header() {
             </a>
           </li>
           <li>
-            <a href="/music">Música</a>
+            <a href={"/" + getCurrentLanguage() + "/music"}>Música</a>
           </li>
           <li>
             <details>
@@ -41,48 +47,10 @@ export function Header() {
             </details>
           </li>
           <li>
-            <a href="/game">Game</a>
+            <a href={"/" + getCurrentLanguage() + "/game"}>Game</a>
           </li>
           <li>
-            <a href="/visual-art">Arte Visual</a>
-          </li>
-        </ul>
-      </div>
-
-      <div className="dropdown dropdown-bottom dropdown-end">
-        <div tabIndex={0} role="button" className="m-1">
-          Lang
-        </div>
-        <ul
-          tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
-        >
-          <li
-            hx-post="/change-lang"
-            hx-swap="none"
-            hx-include="find input[name='lang']"
-            hx-trigger="click"
-          >
-            <a>EN</a>
-            <input type="hidden" name="lang" value="en" />
-          </li>
-          <li
-            hx-post="/change-lang"
-            hx-swap="none"
-            hx-include="find input[name='lang']"
-            hx-trigger="click"
-          >
-            <a>ES</a>
-            <input type="hidden" name="lang" value="es" />
-          </li>
-          <li
-            hx-post="/change-lang"
-            hx-swap="none"
-            hx-include="find input[name='lang']"
-            hx-trigger="click"
-          >
-            <a>PT-BR</a>
-            <input type="hidden" name="lang" value="pt_br" />
+            <a href={"/" + getCurrentLanguage() + "/visual-art"}>Arte Visual</a>
           </li>
         </ul>
       </div>
@@ -146,6 +114,45 @@ export function Header() {
           </li>
         </ul>
       </div>
+
+      <div className="dropdown dropdown-bottom dropdown-end">
+        <div tabIndex={0} role="button" className="m-1">
+          🌐
+        </div>
+        <ul
+          tabIndex={0}
+          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-36 font-bold"
+        >
+          <li
+            hx-post="/change-lang"
+            hx-swap="none"
+            hx-include="find input[name='lang']"
+            hx-trigger="click"
+          >
+            <a>🇺🇸 <span className="ml-2">EN</span></a>
+            <input type="hidden" name="lang" value="en" />
+          </li>
+          <li
+            hx-post="/change-lang"
+            hx-swap="none"
+            hx-include="find input[name='lang']"
+            hx-trigger="click"
+          >
+            <a>🇪🇸 <span className="ml-2">ES</span></a>
+            <input type="hidden" name="lang" value="es" />
+          </li>
+          <li
+            hx-post="/change-lang"
+            hx-swap="none"
+            hx-include="find input[name='lang']"
+            hx-trigger="click"
+          >
+            <a>🇧🇷 <span className="ml-2">PT-BR</span></a>
+            <input type="hidden" name="lang" value="pt_br" />
+          </li>
+        </ul>
+      </div>
+
     </div>
   );
 }

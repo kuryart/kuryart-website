@@ -1,57 +1,88 @@
-import { html, serve_static } from "./response";
+import { Elysia } from "elysia";
+import { staticPlugin } from "@elysiajs/static";
+import { html } from "./response";
 import { HomePage } from "./components/HomePage";
-import { MusicPage } from "./components/MusicPage";
 import { GamePage } from "./components/GamePage";
+import { MusicPage } from "./components/MusicPage";
 import { VisualArtPage } from "./components/VisualArtPage";
-import { setupLocalization, changeLanguage, defaultLanguage } from "./localization";
+import { NotFoundPage } from "./components/NotFoundPage";
+import { setupLocalization } from "./localization";
+import { htmx } from "elysia-htmx";
 
-// Configuration
-const port = process.env?.PORT ? Number(process.env.PORT) : 3000;
-const development = process.env?.NODE_ENV === "development";
-const hostname = development
-  ? "localhost"
-  : process.env?.HOSTNAME ?? "localhost";
+function changeLanguageInUrl(url: string, newLanguage: string): string {
+  try {
+    const parsedUrl = new URL(url);
+    const pathParts = parsedUrl.pathname.split("/");
+    const languageIndex = pathParts.findIndex((part) =>
+      ["pt_br", "en", "es"].includes(part)
+    );
+    if (languageIndex !== -1) {
+      pathParts[languageIndex] = newLanguage;
+    } else {
+      pathParts.unshift(newLanguage);
+    }
+    parsedUrl.pathname = pathParts.join("/");
+
+    return parsedUrl.toString();
+  } catch (error) {
+    throw new Error("A URL não é válida.");
+  }
+}
 
 export function start() {
   setupLocalization();
 
-  const server = Bun.serve({
-    port,
-    hostname,
-    development,
-    async fetch(req) {
-      console.log(`[request]: ${req.method}: ${req.url}`);
-
-      let url = new URL(req.url);
-
-      // - Handle routes
-      // -- Main routes
-      if (url.pathname === "/") return html(<HomePage />);
-      if (url.pathname === "/music") return html(<MusicPage />);
-      if (url.pathname === "/game") return html(<GamePage />);
-      if (url.pathname === "/visual-art") return html(<VisualArtPage />);
-      // -- Localization
-      if (url.pathname === "/change-lang") {
-        const response = html(<></>, 204);
-        response.headers.append("HX-Refresh", "true");
-
-        if(!req.body) {
-          changeLanguage(defaultLanguage);
-          return response;
-        }
-
-        if(req.body) {          
-          let lang = await Bun.readableStreamToText(req.body);
-          lang = lang.replace("lang=", "");
-          changeLanguage(lang);
-          return response;
-        }
+  const app = new Elysia()
+    .use(staticPlugin())
+    .use(htmx())
+    .group("/en", (app) =>
+      app
+        .get("/", () => html(<HomePage />, 200, "en"))
+        .get("/music", () => html(<MusicPage />, 200, "en"))
+        .get("/game", () => html(<GamePage />, 200, "en"))
+        .get("/visual-art", () => html(<VisualArtPage />, 200, "en"))
+    )
+    .group("/es", (app) =>
+      app
+        .get("/", () => html(<HomePage />, 200, "es"))
+        .get("/music", () => html(<MusicPage />, 200, "es"))
+        .get("/game", () => html(<GamePage />, 200, "es"))
+        .get("/visual-art", () => html(<VisualArtPage />, 200, "es"))
+    )
+    .group("/pt_br", (app) =>
+      app
+        .get("/", () => html(<HomePage />, 200, "pt_br"))
+        .get("/music", () => html(<MusicPage />, 200, "pt_br"))
+        .get("/game", () => html(<GamePage />, 200, "pt_br"))
+        .get("/visual-art", () => html(<VisualArtPage />, 200, "pt_br"))
+    )
+    .post("/change-lang", async ({ request, set }) => {
+      if (!request.body) {
+        return html(<>Bad Request</>, 400);
       }
 
-      // Fallback to serving static files
-      return serve_static("public", req);
-    },
-  });
+      const oldUrl = request.headers.get("hx-current-url") ?? "/";
+      const langParam = (await Bun.readableStreamToText(request.body)).replace("lang=","");
+      const url = changeLanguageInUrl(oldUrl, langParam) ?? oldUrl;
+      
+      const response = html(<HomePage />, 200, langParam)
+      response.headers.set("hx-push-url", url);
+      response.headers.set("HX-Redirect", url);
+      response.headers.set("HX-Refresh", "true");
 
-  console.log(`Listening on http://${hostname}:${server.port}...`);
+      return response;
+    })
+    .onError(({ code, error, set, store, request }) => {
+      if (code === "NOT_FOUND") {
+        console.log(`[404]: ${request.method}: ${request.url}`);
+
+        set.status = 404;
+        return html(<NotFoundPage />, 404);
+      }
+    })
+    .listen(3000);
+
+  console.log(
+    `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+  );
 }
