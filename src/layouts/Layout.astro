@@ -1,0 +1,22 @@
+---
+import "../assets/app.css";
+import Header from "../components/solid/Header.jsx";
+import Footer from "../components/solid/Footer.jsx";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<!-- <link rel="icon" href="/favicon.ico" /> -->
+		<meta name="generator" content={Astro.generator} />
+		<title>KuryArt</title>
+	</head>
+	<body>
+		<Header/>
+			<slot />
+		<Footer/>
+	</body>
+</html>

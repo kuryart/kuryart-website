@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+  --color-mauve-100: #c6a0f6;
+  --color-base-100: #24273a;
+  --color-text-100: #cad3f5;
+  --color-blue-100: #8aadf4;
+}
